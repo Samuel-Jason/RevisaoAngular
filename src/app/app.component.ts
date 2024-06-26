@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PhotoComponent } from "./photos/photo/photo.component";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-root',
@@ -10,12 +11,16 @@ import { PhotoComponent } from "./photos/photo/photo.component";
     imports: [RouterOutlet, PhotoComponent]
 })
 export class AppComponent {
-  photos = [{
-    url: 'http://assets.jpg',
-    description: 'leao'
-  },
-  {
-    url: 'http://assets.jpg',
-    description: 'leao'
-  }]
+  photos: Object[] = [];
+
+  constructor(http: HttpClient) {
+
+    http
+    .get<Object[]>('https://rickandmortyapi.com/api/location/3')
+    .subscribe(
+      photos => this.photos = photos,
+      err => console.log(err.message)
+    );
+
+  }
 }
