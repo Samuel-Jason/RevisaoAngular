@@ -5,7 +5,7 @@ import { NgModel } from '@angular/forms';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 
 export const routes: Routes = [
-  { path: 'user/flavio', component:PhotoComponent},
+  { path: 'user/:userName', component:PhotoComponent},
   { path: 'p/add', component: PhotoFormComponent },
   { path: '**', component: NotFoundComponent}
 ];
